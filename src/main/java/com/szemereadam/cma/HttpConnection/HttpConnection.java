@@ -18,11 +18,7 @@ public class HttpConnection {
 
         } catch (RestClientException e) {
             exceptionLog.log(e);
-            throw new RestClientException("Request fails because of server response error");
-
-        } catch (IllegalArgumentException e) {
-            exceptionLog.log(e);
-            throw new IllegalArgumentException("Invalid URL");
+            throw new RestClientException("Request fails because of server response error!");
         }
     }
 }
