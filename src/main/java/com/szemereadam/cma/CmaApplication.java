@@ -1,13 +1,53 @@
 package com.szemereadam.cma;
 
+import com.szemereadam.cma.HttpConnection.HttpConnection;
+import com.szemereadam.cma.Logger.ExceptionLog;
+import com.szemereadam.cma.service.NewsService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
+
+import javax.annotation.PostConstruct;
 
 @SpringBootApplication
 public class CmaApplication {
 
+    private static final String NEWS_URL = "https://data.messari.io/api/v1/news";
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(CmaApplication.class);
+
+    @Autowired
+    private NewsService newsService;
+
+    @Autowired
+    private HttpConnection httpConnection;
+
+    @Autowired
+    private ExceptionLog exceptionLog;
+
     public static void main(String[] args) {
         SpringApplication.run(CmaApplication.class, args);
     }
+
+    @Bean
+    @Profile("production")
+    public CommandLineRunner init() {
+
+        return args -> {
+            String newsJsonResponse = httpConnection.getContent(NEWS_URL); // for market-news
+            newsService.persistObjects(newsJsonResponse); // for market-news
+        };
+    }
+
+    @PostConstruct
+    public void afterInit() {
+        LOGGER.info(httpConnection.toString());
+    }
+
 
 }
