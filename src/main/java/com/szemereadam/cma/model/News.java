@@ -2,6 +2,7 @@ package com.szemereadam.cma.model;
 
 import lombok.*;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -18,8 +19,10 @@ public class News {
     @GeneratedValue
     private Long id;
 
+    @Column(length = 255)
     private String title;
 
+    @Column(length = 100000)
     private String content;
 
     private String publishedAt;
