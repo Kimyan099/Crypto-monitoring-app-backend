@@ -1,7 +1,6 @@
 package com.szemereadam.cma;
 
 import com.szemereadam.cma.HttpConnection.HttpConnection;
-import com.szemereadam.cma.Logger.ExceptionLog;
 import com.szemereadam.cma.service.NewsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,9 +25,6 @@ public class CmaApplication {
 
     @Autowired
     private HttpConnection httpConnection;
-
-    @Autowired
-    private ExceptionLog exceptionLog;
 
     public static void main(String[] args) {
         SpringApplication.run(CmaApplication.class, args);
