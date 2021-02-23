@@ -1,8 +1,6 @@
 package com.szemereadam.cma.HttpConnection;
 
 import com.szemereadam.cma.Logger.ExceptionLog;
-import org.json.JSONException;
-import org.springframework.boot.json.JsonParseException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
