@@ -18,6 +18,8 @@ public class CmaApplication {
 
     private static final String NEWS_URL = "https://data.messari.io/api/v1/news";
 
+    private static final String CURRENCIES_URL = "https://data.messari.io/api/v1/assets";
+
     private static final Logger LOGGER = LoggerFactory.getLogger(CmaApplication.class);
 
     @Autowired
