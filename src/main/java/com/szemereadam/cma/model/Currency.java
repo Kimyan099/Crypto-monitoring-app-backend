@@ -20,10 +20,9 @@ public class Currency {
     @GeneratedValue
     private Long id;
 
-    @Column(nullable = false)
     private String name;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true)
     private String symbol;
 
     @OneToOne(cascade = CascadeType.ALL)
