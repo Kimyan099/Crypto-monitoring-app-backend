@@ -1,6 +1,7 @@
 package com.szemereadam.cma;
 
 import com.szemereadam.cma.HttpConnection.HttpConnection;
+import com.szemereadam.cma.service.CurrencyService;
 import com.szemereadam.cma.service.NewsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,10 +19,15 @@ public class CmaApplication {
 
     private static final String NEWS_URL = "https://data.messari.io/api/v1/news";
 
+    private static final String CURRENCIES_URL = "https://data.messari.io/api/v1/assets";
+
     private static final Logger LOGGER = LoggerFactory.getLogger(CmaApplication.class);
 
     @Autowired
     private NewsService newsService;
+
+    @Autowired
+    private CurrencyService currencyService;
 
     @Autowired
     private HttpConnection httpConnection;
@@ -35,8 +41,11 @@ public class CmaApplication {
     public CommandLineRunner init() {
 
         return args -> {
-            String newsJsonResponse = httpConnection.getContent(NEWS_URL); // for market-news
-            newsService.persistObjects(newsJsonResponse); // for market-news
+            String newsJsonResponse = httpConnection.getContent(NEWS_URL); // for news
+            String currenciesJsonResponse = httpConnection.getContent(CURRENCIES_URL); // for currencies
+
+            newsService.persistObjects(newsJsonResponse); // for news
+            currencyService.persistObjects(currenciesJsonResponse); // for currencies
         };
     }
 
