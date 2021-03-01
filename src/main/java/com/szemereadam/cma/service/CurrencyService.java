@@ -12,6 +12,9 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 @Service
 public class CurrencyService {
 
@@ -75,6 +78,14 @@ public class CurrencyService {
         }
     }
 
+    public void updateCurrency(Currency currency){
+        repository.saveAndFlush(currency);
+    }
+
+    public Currency getCurrencyBySymbol(String symbol) {
+        return repository.getCurrencyBySymbol(symbol);
+    }
+
     private String getMarketDataInString(JSONObject currentObj, String line) throws JSONException {
         return currentObj
                 .getJSONObject("metrics")
@@ -83,12 +94,15 @@ public class CurrencyService {
     }
 
     private double convertValue(String aDouble) {
-
         double val = 0.0;
-        if (!aDouble.equals("null"))  {
-            val = Double.parseDouble(aDouble);
-        }
-        System.out.println(val);
+        if(!aDouble.equals("null")) val = round(aDouble);
         return val;
+    }
+
+    private double round(String number) {
+        BigDecimal bigDecimal = new BigDecimal(number);
+        return bigDecimal
+                .setScale(15, RoundingMode.HALF_UP)
+                .doubleValue();
     }
 }

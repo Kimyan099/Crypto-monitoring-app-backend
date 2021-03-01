@@ -35,5 +35,5 @@ public class Currency {
     @Singular("currency")
     @ManyToMany
     @JsonBackReference
-    private Set<Currency> clientList;
+    private Set<Client> clientList;
 }

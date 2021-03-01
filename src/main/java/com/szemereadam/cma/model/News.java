@@ -19,7 +19,6 @@ public class News {
     @GeneratedValue
     private Long id;
 
-    @Column(length = 255)
     private String title;
 
     @Column(length = 100000)
