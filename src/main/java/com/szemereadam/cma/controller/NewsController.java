@@ -18,13 +18,13 @@ public class NewsController {
     private NewsRepository newsRepository;
 
     @CrossOrigin(origins = ORIGIN)
-    @GetMapping("/news/category/allnews/orderby/desc")
+    @GetMapping("/news/allnews/orderby/desc")
     public List<News> newsListDESC() {
         return newsRepository.getAllNewsDESC();
     }
 
     @CrossOrigin(origins = ORIGIN)
-    @GetMapping("/news/category/allnews/orderby/asc")
+    @GetMapping("/news/allnews/orderby/asc")
     public List<News> newsListASC() {
         return newsRepository.getAllNewsASC();
     }
