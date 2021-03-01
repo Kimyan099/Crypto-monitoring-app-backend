@@ -39,9 +39,9 @@ public class CurrencyService {
                 String usdPrice = getMarketDataInString(currentObj, "price_usd");
 
                 // convert string double to double
-                Double percent_change_usd_last_1_hour = convertValue(usdLast1Hour);
-                Double percent_change_usd_last_24_hours = convertValue(usdLast24Hours);
-                Double price = convertValue(usdPrice);
+                double percent_change_usd_last_1_hour = convertValue(usdLast1Hour);
+                double percent_change_usd_last_24_hours = convertValue(usdLast24Hours);
+                double price = convertValue(usdPrice);
 
                 //Build object from data
                 MarketData marketData = MarketData.builder()
@@ -93,12 +93,9 @@ public class CurrencyService {
                 .getString(line);
     }
 
-    private Double convertValue(String aDouble) {
-
+    private double convertValue(String aDouble) {
         double val = 0.0;
-        if (!aDouble.equals("null"))  {
-            val = round(aDouble);
-        }
+        if(!aDouble.equals("null")) val = round(aDouble);
         return val;
     }
 
