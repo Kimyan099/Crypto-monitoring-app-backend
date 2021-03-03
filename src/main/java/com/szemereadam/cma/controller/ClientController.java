@@ -1,6 +1,6 @@
 package com.szemereadam.cma.controller;
 
-import com.szemereadam.cma.DTO.UserCredentials;
+import com.szemereadam.cma.DTO.ClientCredentials;
 import com.szemereadam.cma.Logger.ExceptionLog;
 import com.szemereadam.cma.model.Client;
 import com.szemereadam.cma.repository.ClientRepository;
@@ -52,7 +52,7 @@ public class ClientController {
 
     @CrossOrigin(origins = ORIGIN, allowCredentials = "true")
     @PostMapping(value = "/login")
-    public ResponseEntity login(@RequestBody UserCredentials data, HttpServletResponse response) {
+    public ResponseEntity login(@RequestBody ClientCredentials data, HttpServletResponse response) {
         try {
             String email = data.getEmail();
             String password = data.getPassword();
